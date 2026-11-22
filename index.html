@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#176b3a">
+  <title>நம்ம ஊரு விவசாயி | Namma Ooru Vivasayi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Namma Ooru Vivasayi home">
+      <span class="brand-mark">🌾</span>
+      <span><strong>நம்ம ஊரு விவசாயி</strong><small>NAMMA OORU VIVASAYI</small></span>
+    </a>
+    <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search milk, cows, tools, fish..."></label>
+    <div class="top-actions">
+      <span id="userEmail" class="user-email">Guest</span>
+      <button class="outline-btn" id="loginBtn">Login / Sign up</button>
+      <button class="outline-btn" id="logoutBtn" hidden>Logout</button>
+      <button class="primary-btn" id="openSellTop">＋ Sell</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <p class="side-heading">MENU</p>
+      <button class="nav-item active" data-category="All">⌂ <span>Home feed</span></button>
+      <button class="nav-item" data-category="Animals">🐄 <span>Cows &amp; Goats</span></button>
+      <button class="nav-item" data-category="Milk">🥛 <span>Milk &amp; Dairy</span></button>
+      <button class="nav-item" data-category="Fertilizers">🌱 <span>Fertilizers</span></button>
+      <button class="nav-item" data-category="Tools">🛠️ <span>Farm tools</span></button>
+      <button class="nav-item" data-category="Fish">🐟 <span>Fish</span></button>
+      <div class="sidebar-note"><strong>உள்ளூர் மக்களுக்காக ❤️</strong><p>Buy and sell directly in your community.</p></div>
+    </aside>
+
+    <section class="feed">
+      <section class="welcome">
+        <div>
+          <span class="eyebrow">FARMERS • BUYERS • LOCAL COMMUNITY</span>
+          <h1>விவசாயியின் உழைப்புக்கு<br><em>நேரடி சந்தை!</em></h1>
+          <p>Sell your farm products directly. Discover offers from people around you.</p>
+          <button class="primary-btn" id="openSellHero">＋ Post an item for sale</button>
+        </div>
+        <div class="welcome-art" aria-hidden="true">🌾🐄🌱</div>
+      </section>
+
+      <section class="stories-section">
+        <div class="section-title"><h2>Community highlights</h2><span>Fresh local offers</span></div>
+        <div class="stories">
+          <div class="story"><div class="story-ring add-story">＋</div><small>Your post</small></div>
+          <div class="story"><div class="story-ring">🐄</div><small>Livestock</small></div>
+          <div class="story"><div class="story-ring">🥛</div><small>Dairy</small></div>
+          <div class="story"><div class="story-ring">🌱</div><small>Farming</small></div>
+          <div class="story"><div class="story-ring">🐟</div><small>Fish</small></div>
+        </div>
+      </section>
+
+      <section class="products-section">
+        <div class="section-title"><h2>Available offers</h2><span id="offerCount"></span></div>
+        <p id="offersStatus" class="status-text">Loading offers...</p>
+        <div id="productGrid" class="product-grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <nav class="mobile-nav">
+    <button class="nav-item active" data-category="All">⌂<span>Home</span></button>
+    <button class="nav-item" data-category="Animals">🐄<span>Animals</span></button>
+    <button class="nav-item" data-category="Milk">🥛<span>Milk</span></button>
+    <button class="nav-item" data-category="Tools">🛠️<span>Tools</span></button>
+    <button class="nav-item" id="openSellMobile">＋<span>Sell</span></button>
+  </nav>
+
+  <dialog id="loginDialog" class="dialog">
+    <form id="loginForm" class="dialog-form">
+      <h2>Login / Sign up</h2>
+      <label>Name (for sign up)<input id="signupName" type="text" placeholder="Your name"></label>
+      <label>Phone (for sign up)<input id="signupPhone" type="tel" placeholder="Phone number"></label>
+      <label>Email<input id="loginEmail" type="email" required autocomplete="email"></label>
+      <label>Password<input id="loginPassword" type="password" required minlength="6" autocomplete="current-password"></label>
+      <p id="loginMessage" class="form-message"></p>
+      <div class="dialog-actions">
+        <button type="submit" class="primary-btn">Login</button>
+        <button type="button" class="outline-btn" id="createAccountBtn">Create account</button>
+        <button type="button" class="outline-btn" id="closeLoginBtn">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="sellDialog" class="dialog">
+    <form id="sellForm" class="dialog-form">
+      <h2>Post an item for sale</h2>
+      <label>Product name<input id="sellName" type="text" required></label>
+      <label>Category
+        <select id="sellCategory">
+          <option value="Animals">Cows &amp; Goats</option>
+          <option value="Milk">Milk &amp; Dairy</option>
+          <option value="Fertilizers">Fertilizers</option>
+          <option value="Tools">Farm tools</option>
+          <option value="Fish">Fish</option>
+        </select>
+      </label>
+      <label>Price (₹)<input id="sellPrice" type="number" min="0" required></label>
+      <label>Quantity<input id="sellQuantity" type="text" placeholder="e.g. 10 litres" required></label>
+      <label>Phone<input id="sellPhone" type="tel" required></label>
+      <label>Photo link (optional)<input id="sellPhoto" type="url" placeholder="https://..."></label>
+      <p id="sellMessage" class="form-message"></p>
+      <div class="dialog-actions">
+        <button type="submit" class="primary-btn">Post offer</button>
+        <button type="button" class="outline-btn" id="closeSellBtn">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
